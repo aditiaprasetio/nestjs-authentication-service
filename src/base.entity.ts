@@ -5,11 +5,11 @@ export class BaseEntity {
   @PrimaryColumn('varchar')
   id: string;
 
-  @CreateDateColumn({ nullable: true })
+  @CreateDateColumn({ type: 'timestamp', nullable: true })
   @ApiModelProperty({ readOnly: true })
   created_at?: Date;
 
-  @UpdateDateColumn({ nullable: true })
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
   @ApiModelProperty({ readOnly: true })
   updated_at?: Date;
 }

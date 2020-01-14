@@ -8,7 +8,7 @@ import { RoleService } from '../role/role.service';
 import { AccountRoleService } from '../accountRole/accountRole.service';
 import {encryptPassword, generateToken} from '../../utils/encrypt';
 import { UpdateResult } from 'typeorm';
-import { MailService } from '../../services/mail.service';
+import { MailService } from '../../mailer/mail.service';
 import { EFeatureList } from '../../services/feature.enum';
 import * as cryptoRandomString from 'crypto-random-string';
 

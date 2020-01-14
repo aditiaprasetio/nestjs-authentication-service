@@ -1,6 +1,6 @@
 import { MailerService } from '@nest-modules/mailer';
 import { Injectable, Logger } from '@nestjs/common';
-import { EFeatureList } from './feature.enum';
+import { EFeatureList } from '../services/feature.enum';
 
 @Injectable()
 export class MailService {

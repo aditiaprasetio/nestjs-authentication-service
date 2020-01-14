@@ -12,14 +12,9 @@ import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 import { IsOptional, IsNotEmpty, IsString } from 'class-validator';
 import { CrudValidationGroups } from '@nestjsx/crud';
 import { Type } from 'class-transformer';
-import { Employee } from '../../employee/employee.entity';
 import { AccountRole } from '../accountRole/accountRole.entity';
 import { AccountPermission } from '../accountPermission/accountPermission.entity';
 import { encryptPassword } from '../../utils/encrypt';
-import { Branch } from '../../branch/branch.entity';
-import { PaySlip } from '../../paySlip/paySlip.entity';
-import { Log } from '../../log/log.entity';
-import { Loan } from '../../loan/loan.entity';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 
@@ -64,17 +59,6 @@ export class Account extends BaseEntity {
   @Column({ nullable: true })
   branch_id: string;
 
-  @ManyToOne(() => Branch, branch => branch.accounts, {
-    cascade: true,
-    onDelete: 'SET NULL',
-  })
-  @JoinColumn({ name: 'branch_id' })
-  branch: Branch;
-
-  @OneToMany(() => Employee, employee => employee.account)
-  @Type(() => Employee)
-  employees: Employee[];
-
   @OneToMany(() => AccountRole, account_role => account_role.account)
   @Type(() => AccountRole)
   account_roles: AccountRole[];
@@ -85,27 +69,6 @@ export class Account extends BaseEntity {
   )
   @Type(() => AccountPermission)
   account_permissions: AccountPermission[];
-
-  @OneToMany(
-    () => PaySlip,
-    payslip => payslip.created_by,
-  )
-  @Type(() => PaySlip)
-  payslips: PaySlip[];
-
-  @OneToMany(
-    () => Log,
-    log => log.account,
-  )
-  @Type(() => Log)
-  logs: Log[];
-
-  @OneToMany(
-    () => Loan,
-    loan => loan.created_by,
-  )
-  @Type(() => Loan)
-  loans: Loan[];
 
   @BeforeInsert()
   hashPassword() {
@@ -119,10 +82,14 @@ export class Account extends BaseEntity {
   @Column({ nullable: true })
   token_reset_password?: string | null;
 
+  @ApiModelPropertyOptional({ example: false })
+  @Column({ default: false })
+  is_disabled?: boolean;
+
   @BeforeInsert()
   protected beforeInsert(): void {
     this.id = uuid.v4();
-    this.email = this.email.toLowerCase();
-    this.username = this.username.toLowerCase();
+    this.email = this.email.toLowerCase().trim();
+    this.username = this.username.toLowerCase().trim();
   }
 }

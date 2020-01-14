@@ -9,12 +9,10 @@ export class InitController {
 
   @Post()
   async init() {
-    const branch = await this.service.createBranch();
     const role = await this.service.createRole();
     const account = await this.service.createAccount();
     const accountRole = await this.service.createAccountRole();
     return {
-      branch,
       role,
       account,
       accountRole,

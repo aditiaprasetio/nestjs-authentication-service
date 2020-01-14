@@ -1,6 +1,6 @@
 import { Controller, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
-import { MailService } from '../services/mail.service';
+import { MailService } from './mail.service';
 import { EFeatureList } from '../services/feature.enum';
 
 @ApiUseTags('Mail')

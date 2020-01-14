@@ -19,12 +19,10 @@ import { RolePermissionService } from './rolePermission/rolePermission.service';
 import { RolePermissionController } from './rolePermission/rolePermission.controller';
 import { AccountPermissionService } from './accountPermission/accountPermission.service';
 import { AccountPermission } from './accountPermission/accountPermission.entity';
-import { MailService } from '../services/mail.service';
+import { MailService } from '../mailer/mail.service';
 
 // Load dot environment before load other modules
 import dotenv = require('dotenv');
-import {BranchService} from '../branch/branch.service';
-import {Branch} from '../branch/branch.entity';
 const { parsed } = dotenv.config({
   path: process.cwd() + '/.env' + (process.env.NODE_ENV ? '.' + process.env.NODE_ENV : ''),
 });
@@ -39,7 +37,6 @@ process.env = { ...process.env, ...parsed };
       AccountRole,
       RolePermission,
       AccountPermission,
-      Branch,
     ]),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
@@ -54,7 +51,6 @@ process.env = { ...process.env, ...parsed };
     AccountRoleService,
     RolePermissionService,
     AccountPermissionService,
-    BranchService,
     MailService,
   ],
 

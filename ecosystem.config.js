@@ -2,8 +2,7 @@ module.exports = {
   apps: [{
     name: "app",
     script: "./dist/main.js",
-    instances : 1,
-    // instances : "max",
+    instances : "max",
     exec_mode : "cluster",
     exp_backoff_restart_delay: 10,
     // max_memory_restart: '100M',
