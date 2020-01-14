@@ -49,7 +49,7 @@ const defaultFrom = `"${process.env.MAIL_NAME}" <${process.env.MAIL_USERNAME}@${
         migrationsDir: __dirname + '/migrations',
       },
       migrations: [
-        migration.InitDB1578929481932,
+        migration.InitDB1578966978240,
       ],
     }),
     JwtModule.register({
