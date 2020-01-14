@@ -132,7 +132,7 @@ export class AccountService extends TypeOrmCrudService<Account> {
         username: auth.username,
         password: auth.password,
       },
-      relations: ['account_roles', 'account_roles.role', 'branch'],
+      relations: ['account_roles', 'account_roles.role'],
     });
     if (!account) {
       account = await this.repo.findOne({
@@ -140,7 +140,7 @@ export class AccountService extends TypeOrmCrudService<Account> {
           email: auth.username.toLowerCase(),
           password: auth.password,
         },
-        relations: ['account_roles', 'account_roles.role', 'branch'],
+        relations: ['account_roles', 'account_roles.role'],
       });
     }
     if (!account) {

@@ -53,12 +53,6 @@ export class Account extends BaseEntity {
   @Column({ unique: true })
   email: string;
 
-  @ApiModelPropertyOptional()
-  @IsOptional({ always: true })
-  @IsString({ always: true })
-  @Column({ nullable: true })
-  branch_id: string;
-
   @OneToMany(() => AccountRole, account_role => account_role.account)
   @Type(() => AccountRole)
   account_roles: AccountRole[];

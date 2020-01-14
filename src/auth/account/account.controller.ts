@@ -36,10 +36,6 @@ import { RoleService } from '../../auth/role/role.service';
       'account_roles.role': {
         exclude: [],
       },
-      // tslint:disable-next-line: quotemark
-      "branch": {
-        exclude: [],
-      },
     },
   },
 })
