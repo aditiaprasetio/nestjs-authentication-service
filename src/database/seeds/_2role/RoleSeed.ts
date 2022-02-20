@@ -16,7 +16,7 @@ export const SeedData: any[] = [
     updated_at: new Date(),
   },
   {
-    id: '7b47ec41-e861-42e0-b787-b5396f825622',
+    id: 'a47bbb92-dccc-472b-98df-cfe1c6d7ccb9',
     name: ROLES.USER,
     description: 'User',
     created_at: new Date(),

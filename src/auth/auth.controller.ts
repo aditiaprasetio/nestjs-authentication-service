@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpException, Put } from '@nestjs/common';
+import { Controller, Post, Body, HttpException, Put, Patch } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Account } from './account/account.entity';
 import { ApiUseTags, ApiOperation } from '@nestjs/swagger';

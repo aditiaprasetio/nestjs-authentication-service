@@ -53,7 +53,7 @@ export class AccountController implements CrudController<Account> {
     return this;
   }
 
-  @Roles('admin')
+  @Roles('admin', 'superadmin')
   @Override()
   async getMany(@ParsedRequest() req: CrudRequest) {
     const joins = req.parsed.join;
@@ -99,7 +99,7 @@ export class AccountController implements CrudController<Account> {
     return newResults;
   }
 
-  @Roles('admin')
+  @Roles('admin', 'superadmin')
   @Override('getOneBase')
   async getOneAndDoStuff(@ParsedRequest() req: CrudRequest) {
     let res: any = await this.base.getOneBase(req);
@@ -115,13 +115,13 @@ export class AccountController implements CrudController<Account> {
     return res;
   }
 
-  // @Roles('admin')
+  // @Roles('admin', 'superadmin')
   @Override()
   createOne(@ParsedBody() dto: AccountDto) {
     return this.service.createWithRole(dto);
   }
 
-  @Roles('admin')
+  @Roles('admin', 'superadmin')
   @Override()
   createMany(
     @ParsedRequest() req: CrudRequest,
@@ -130,7 +130,7 @@ export class AccountController implements CrudController<Account> {
     return this.base.createManyBase(req, dto);
   }
 
-  @Roles('admin')
+  @Roles('admin', 'superadmin')
   @Override('updateOneBase')
   async coolFunction(@Param('id') id: string, @Body() dto: AccountDto) {
     let res: any = await this.service.updateWithRole(id, dto);
@@ -143,7 +143,7 @@ export class AccountController implements CrudController<Account> {
     return res;
   }
 
-  @Roles('admin')
+  @Roles('admin', 'superadmin')
   @Override('replaceOneBase')
   async awesomePUT(@Param('id') id: string, @Body() dto: AccountDto) {
     let res: any = await this.service.updateWithRole(id, dto);
@@ -156,7 +156,7 @@ export class AccountController implements CrudController<Account> {
     return res;
   }
 
-  @Roles('admin')
+  @Roles('admin', 'superadmin')
   @Override()
   async deleteOne(@ParsedRequest() req: CrudRequest) {
     return this.base.deleteOneBase(req);

@@ -1,8 +1,8 @@
 module.exports = {
   type: 'mysql',
   host: 'localhost',
-  username: 'mavila',
-  password: 'Mavila_123',
+  username: 'root',
+  password: 'root',
   database: 'attendance',
   port: 3306,
   entities: [

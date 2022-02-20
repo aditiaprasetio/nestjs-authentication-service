@@ -20,21 +20,25 @@ export class RolesGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
+    console.info('roles', roles);
     if (!roles) {
       return true;
     }
     const request = context.switchToHttp().getRequest();
     const authorization = request.headers.authorization;
+    console.info('authorization', authorization)
     if (!authorization) {
       return false;
     }
     const exp = authorization.split(' ');
+    console.info('exp', exp);
     if (Array.isArray(exp) && exp.length > 0) {
       // continue;
     } else {
       return false;
     }
     const user: any = jwtService.decode(exp[1]);
+    console.info('user', user);
     if (!user) {
       return false;
     }
